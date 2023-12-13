@@ -43,7 +43,7 @@ function createLinkedList(head = null) {
 
     size() {
       let size = 0;
-      throwNoHeadError();
+      throwNoHeadError.call(this);
       let tmp = this.head;
       while (tmp !== null) {
         size += 1;
@@ -53,17 +53,32 @@ function createLinkedList(head = null) {
     },
 
     listHead() {
-      throwNoHeadError();
+      throwNoHeadError.call(this);
       console.log(this.hea);
     },
 
     tail() {
-      throwNoHeadError();
+      throwNoHeadError.call(this);
       let tmp = this.head;
       while (tmp.next !== null) {
         tmp = tmp.next;
       }
       console.log(tmp);
+    },
+
+    at(index) {
+      throwNoHeadError.call(this);
+      let tmp = this.head;
+      let currentIndex = 0;
+      while (tmp !== null && currentIndex >= index) {
+        tmp = tmp.next;
+        currentIndex += 1;
+      }
+      if (currentIndex === index && tmp !== null) {
+        console.log(tmp.data);
+      } else {
+        throw new Error('Index out of bounds');
+      }
     },
   };
 }
