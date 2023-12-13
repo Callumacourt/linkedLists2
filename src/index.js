@@ -34,5 +34,27 @@ function createLinkedList(head = null) {
       newNode.next = this.head;
       this.head = newNode;
     },
+
+    size() {
+      let size = 0;
+      if (!this.head) {
+        throw new Error('Invalid Linked List');
+      } else {
+        let tmp = this.head;
+        while (tmp !== null) {
+          size += 1;
+          tmp = tmp.next;
+        }
+        console.log(size);
+      }
+    },
+
+    listHead() {
+      if (!this.head) {
+        throw new Error('Invalid Linked List');
+      } else {
+        console.log(this.hea);
+      }
+    },
   };
 }
