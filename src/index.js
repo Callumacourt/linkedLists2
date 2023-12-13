@@ -9,5 +9,18 @@ function createNode(data = null, next = null) {
 function createLinkedList(head = null) {
   return {
     head: null,
+
+    append(value) {
+      const newNode = createNode(value);
+      if (!this.head) {
+        this.head = newNode;
+      }
+
+      let tmp = this.head;
+      while (tmp.next !== null) {
+        tmp = tmp.next;
+      }
+      tmp.next = newNode;
+    },
   };
 }
