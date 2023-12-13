@@ -80,5 +80,20 @@ function createLinkedList(head = null) {
         throw new Error('Index out of bounds');
       }
     },
+
+    pop() {
+      throwNoHeadError.call(this);
+
+      if (!this.head.next) {
+        this.head = null;
+        return;
+      }
+
+      let tmp = this.head;
+      while (tmp.next.next !== null) {
+        tmp = tmp.next;
+      }
+      tmp.next = null;
+    },
   };
 }
