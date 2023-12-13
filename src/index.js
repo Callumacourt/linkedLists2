@@ -12,6 +12,12 @@ function checkIfHead(node) {
   }
 }
 
+function throwNoHeadError() {
+  if (!this.head) {
+    throw new Error('Invalid Linked List');
+  }
+}
+
 function createLinkedList(head = null) {
   return {
     head,
@@ -37,24 +43,27 @@ function createLinkedList(head = null) {
 
     size() {
       let size = 0;
-      if (!this.head) {
-        throw new Error('Invalid Linked List');
-      } else {
-        let tmp = this.head;
-        while (tmp !== null) {
-          size += 1;
-          tmp = tmp.next;
-        }
-        console.log(size);
+      throwNoHeadError();
+      let tmp = this.head;
+      while (tmp !== null) {
+        size += 1;
+        tmp = tmp.next;
       }
+      console.log(size);
     },
 
     listHead() {
-      if (!this.head) {
-        throw new Error('Invalid Linked List');
-      } else {
-        console.log(this.hea);
+      throwNoHeadError();
+      console.log(this.hea);
+    },
+
+    tail() {
+      throwNoHeadError();
+      let tmp = this.head;
+      while (tmp.next !== null) {
+        tmp = tmp.next;
       }
+      console.log(tmp);
     },
   };
 }
