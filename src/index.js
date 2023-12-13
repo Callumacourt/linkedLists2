@@ -6,21 +6,33 @@ function createNode(data = null, next = null) {
   return node;
 }
 
+function checkIfHead(node) {
+  if (!this.head) {
+    this.head = node;
+  }
+}
+
 function createLinkedList(head = null) {
   return {
-    head: null,
+    head,
 
     append(value) {
       const newNode = createNode(value);
-      if (!this.head) {
-        this.head = newNode;
-      }
+      checkIfHead.call(this, newNode);
 
       let tmp = this.head;
       while (tmp.next !== null) {
         tmp = tmp.next;
       }
       tmp.next = newNode;
+    },
+
+    prepend(value) {
+      const newNode = createNode(value);
+      checkIfHead.call(this, newNode);
+
+      newNode.next = this.head;
+      this.head = newNode;
     },
   };
 }
