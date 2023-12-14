@@ -156,9 +156,31 @@ function createLinkedList(head = null) {
         throw new Error('Index out of bounds');
       }
     },
+    removeAt(index) {
+      throwNoHeadError.call(this);
+
+      if (index < 0) {
+        throw new Error('Index must be non-negative');
+      }
+
+      if (index === 0) {
+        this.head = this.head.next;
+        return;
+      }
+
+      let tmp = this.head;
+      let currentIndex = 0;
+
+      while (tmp !== null && currentIndex + 1 !== index) {
+        tmp = tmp.next;
+        currentIndex += 1;
+      }
+
+      if (tmp !== null && tmp.next !== null && currentIndex + 1 === index) {
+        tmp.next = tmp.next.next;
+      } else {
+        throw new Error('Index not contained in list');
+      }
+    },
   };
 }
-
-const linkedList = createLinkedList();
-linkedList.append(10);
-console.log(linkedList);
