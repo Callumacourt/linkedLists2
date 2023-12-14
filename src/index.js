@@ -95,5 +95,31 @@ function createLinkedList(head = null) {
       }
       tmp.next = null;
     },
+
+    contains(value) {
+      throwNoHeadError.call(this);
+      let tmp = this.head;
+      while (tmp.next !== null && tmp.data !== value) {
+        tmp = tmp.next;
+      }
+      if (tmp !== null && tmp.data === value) {
+        return true;
+      }
+      return false;
+    },
+
+    find(value) {
+      throwNoHeadError.call(this);
+      let tmp = this.head;
+      let index = 0;
+      while (tmp.data !== value && tmp.next !== null) {
+        tmp = tmp.next;
+        index += 1;
+      }
+      if (tmp.data === value && tmp !== null) {
+        return index;
+      }
+      return null;
+    },
   };
 }
