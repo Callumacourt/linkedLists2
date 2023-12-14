@@ -121,5 +121,44 @@ function createLinkedList(head = null) {
       }
       return null;
     },
+
+    toString() {
+      throwNoHeadError.call(this);
+      const objectsArray = [];
+      let tmp = this.head;
+      while (tmp !== null) {
+        const stringData = tmp.data.toString();
+        objectsArray.push(stringData);
+        tmp = tmp.next;
+      }
+      return objectsArray.join('');
+    },
+    // extra credit
+    insert(value, index) {
+      throwNoHeadError.call(this);
+
+      if (index < 0) {
+        throw new Error('Index must be non-negative');
+      }
+
+      let tmp = this.head;
+      let currentIndex = 0;
+
+      while (tmp !== null && currentIndex < index - 1) {
+        tmp = tmp.next;
+        currentIndex += 1;
+      }
+
+      if (currentIndex === index - 1 && tmp !== null) {
+        const newNode = createNode(value, tmp.next);
+        tmp.next = newNode;
+      } else {
+        throw new Error('Index out of bounds');
+      }
+    },
   };
 }
+
+const linkedList = createLinkedList();
+linkedList.append(10);
+console.log(linkedList);
